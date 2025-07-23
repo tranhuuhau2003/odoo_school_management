@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_school_exam_result_tree" model="ir.ui.view">
+        <field name="name">school.exam_result.tree</field>
+        <field name="model">school.exam_result</field>
+        <field name="arch" type="xml">
+            <tree string="Kết quả kiểm tra">
+                <field name="student_id"/>
+                <field name="subject_id"/>
+                <field name="exam_type"/>
+                <field name="score"/>
+                <field name="semester"/>
+                <field name="year"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_school_exam_result_form" model="ir.ui.view">
+        <field name="name">school.exam_result.form</field>
+        <field name="model">school.exam_result</field>
+        <field name="arch" type="xml">
+            <form string="Kết quả kiểm tra">
+                <sheet>
+                    <group>
+                        <field name="student_id"/>
+                        <field name="subject_id"/>
+                        <field name="exam_type"/>
+                        <field name="score"/>
+                        <field name="semester"/>
+                        <field name="year"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_school_exam_result" model="ir.actions.act_window">
+        <field name="name">Kết quả kiểm tra</field>
+        <field name="res_model">school.exam_result</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_school_exam_result" name="Kết quả kiểm tra" parent="menu_school_root" action="action_school_exam_result" sequence="60"/>
+</odoo>

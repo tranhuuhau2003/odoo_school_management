@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_school_timetable_tree" model="ir.ui.view">
+        <field name="name">school.timetable.tree</field>
+        <field name="model">school.timetable</field>
+        <field name="arch" type="xml">
+            <tree string="Thời khóa biểu">
+                <field name="class_id"/>
+                <field name="subject_id"/>
+                <field name="teacher_id"/>
+                <field name="weekday"/>
+                <field name="time_start"/>
+                <field name="time_end"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_school_timetable_form" model="ir.ui.view">
+        <field name="name">school.timetable.form</field>
+        <field name="model">school.timetable</field>
+        <field name="arch" type="xml">
+            <form string="Thời khóa biểu">
+                <sheet>
+                    <group>
+                        <field name="class_id"/>
+                        <field name="subject_id"/>
+                        <field name="teacher_id"/>
+                        <field name="weekday"/>
+                        <field name="time_start"/>
+                        <field name="time_end"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_school_timetable" model="ir.actions.act_window">
+        <field name="name">Thời khóa biểu</field>
+        <field name="res_model">school.timetable</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_school_timetable" name="Thời khóa biểu" parent="menu_school_root" action="action_school_timetable" sequence="30"/>
+</odoo>

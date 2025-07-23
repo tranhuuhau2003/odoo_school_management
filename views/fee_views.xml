@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_school_fee_tree" model="ir.ui.view">
+        <field name="name">school.fee.tree</field>
+        <field name="model">school.fee</field>
+        <field name="arch" type="xml">
+            <tree string="Học phí">
+                <field name="student_id"/>
+                <field name="class_id"/>
+                <field name="amount"/>
+                <field name="due_date"/>
+                <field name="state"/>
+                <field name="invoice_id"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_school_fee_form" model="ir.ui.view">
+        <field name="name">school.fee.form</field>
+        <field name="model">school.fee</field>
+        <field name="arch" type="xml">
+            <form string="Học phí">
+                <sheet>
+                    <group>
+                        <field name="student_id"/>
+                        <field name="class_id"/>
+                        <field name="amount"/>
+                        <field name="due_date"/>
+                        <field name="state"/>
+                        <field name="invoice_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_school_fee" model="ir.actions.act_window">
+        <field name="name">Học phí</field>
+        <field name="res_model">school.fee</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_school_fee" name="Học phí" parent="menu_school_root" action="action_school_fee" sequence="70"/>
+</odoo>

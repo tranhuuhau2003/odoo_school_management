@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_parent_tree" model="ir.ui.view">
+        <field name="name">student.parent.tree</field>
+        <field name="model">student.parent</field>
+        <field name="arch" type="xml">
+            <tree string="Phụ huynh">
+                <field name="name"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <field name="job"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_parent_form" model="ir.ui.view">
+        <field name="name">student.parent.form</field>
+        <field name="model">student.parent</field>
+        <field name="arch" type="xml">
+            <form string="Phụ huynh">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="phone"/>
+                        <field name="email"/>
+                        <field name="job"/>
+                        <field name="address"/>
+                        <field name="child_ids"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_parent" model="ir.actions.act_window">
+        <field name="name">Phụ huynh</field>
+        <field name="res_model">student.parent</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_parent" name="Phụ huynh" parent="menu_school_root" action="action_parent" sequence="16"/>
+</odoo>

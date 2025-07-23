@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_student_tree" model="ir.ui.view">
+        <field name="name">student.student.tree</field>
+        <field name="model">student.student</field>
+        <field name="arch" type="xml">
+            <tree string="Học sinh">
+                <field name="student_code"/>
+                <field name="name"/>
+                <field name="gender"/>
+                <field name="dob"/>
+                <field name="class_id"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_student_form" model="ir.ui.view">
+        <field name="name">student.student.form</field>
+        <field name="model">student.student</field>
+        <field name="arch" type="xml">
+            <form string="Học sinh">
+                <sheet>
+                    <group>
+                        <field name="student_code"/>
+                        <field name="name"/>
+                        <field name="gender"/>
+                        <field name="dob"/>
+                        <field name="image" widget="image"/>
+                        <field name="admission_date"/>
+                        <field name="status"/>
+                        <field name="class_id"/>
+                        <field name="parent_id"/> 
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_student" model="ir.actions.act_window">
+        <field name="name">Học sinh</field>
+        <field name="res_model">student.student</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_student" name="Học sinh" parent="menu_school_root" action="action_student" sequence="15"/>
+</odoo>
