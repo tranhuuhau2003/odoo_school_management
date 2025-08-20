@@ -1,0 +1,125 @@
+📌 Epic 1: Student Management (student.student)
+
+Task 1.1: Create student.student model
+
+Subtask 1.1.1: Add fields (name, student_code, image, dob, gender, admission_date, status)
+
+Subtask 1.1.2: Add uniqueness constraint for student_code
+
+Task 1.2: Define relationships
+
+Subtask 1.2.1: class_id (Many2one → school.class)
+
+Subtask 1.2.2: parent_id (Many2one → student.parent)
+
+Task 1.3: Implement CRUD operations & Search views
+
+Task 1.4: Create Kanban/List/Form views
+
+Task 1.5: Add filters (by class, status, name)
+
+📌 Epic 2: Parent Management (student.parent)
+
+Task 2.1: Create student.parent model
+
+Subtask 2.1.1: Add fields (name, phone, email, job, address)
+
+Task 2.2: Define relationship student_ids (One2many → student.student)
+
+Task 2.3: Implement CRUD operations & Views
+
+Task 2.4: Display children list in parent view
+
+📌 Epic 3: Class Management (school.class)
+
+Task 3.1: Create school.class model
+
+Subtask 3.1.1: Add fields (name, academic_year, homeroom_teacher_id)
+
+Task 3.2: Define relationship student_ids (One2many → student.student)
+
+Task 3.3: Implement CRUD operations & Views (Form, Tree, Kanban)
+
+Task 3.4: Display student list in class view
+
+📌 Epic 4: Subject Management (school.subject)
+
+Task 4.1: Create school.subject model
+
+Subtask 4.1.1: Add fields (name, code)
+
+Task 4.2: Implement CRUD operations & Views
+
+📌 Epic 5: Timetable Management (school.timetable)
+
+Task 5.1: Create school.timetable model
+
+Subtask 5.1.1: Add fields (day_of_week, period, subject_id, class_id, teacher_id)
+
+Task 5.2: Add validation to prevent schedule conflicts (same class, same period)
+
+Task 5.3: Implement timetable views by class
+
+📌 Epic 6: Attendance Management (school.attendance)
+
+Task 6.1: Create school.attendance model
+
+Subtask 6.1.1: Add fields (student_id, date, status)
+
+Task 6.2: Build attendance form for teachers
+
+Task 6.3: Generate attendance reports (by class, by student, date range)
+
+Task 6.4: Allow parents to view child’s attendance history
+
+📌 Epic 7: Exam Results Management (school.exam_result)
+
+Task 7.1: Create school.exam_result model
+
+Subtask 7.1.1: Add fields (student_id, subject_id, exam_type, score)
+
+Task 7.2: Add validation: score must be between 0–10
+
+Task 7.3: Compute student’s average score
+
+Task 7.4: Display exam results to parents
+
+📌 Epic 8: Fee Management (school.fee)
+
+Task 8.1: Create school.fee model
+
+Subtask 8.1.1: Add fields (name, student_id, amount, due_date, state)
+
+Task 8.2: Track fee status (draft, paid, overdue)
+
+Task 8.3: Allow parents to view fee details & payment history
+
+📌 Epic 9: Access Rights & Security
+
+Task 9.1: Create Administrator role (full access)
+
+Task 9.2: Create Teacher role (manage own classes & students only)
+
+Task 9.3: Create Parent role (view own children only)
+
+Task 9.4: Create Accountant role (manage fees only)
+
+Task 9.5: Apply record rules & access rights per model
+
+📌 Epic 10: Improvements & Extensions
+
+Task 10.1: Change parent_id → parent_ids (Many2many, multiple guardians)
+
+Task 10.2: Create school.teacher model
+
+Subtask 10.2.1: Add fields (name, specialization, subject_ids, user_id)
+
+Task 10.3: Build a portal for parents & students (instead of backend access)
+
+Task 10.4: Implement notification system (email/SMS)
+
+Subtask 10.4.1: Notify when new exam results are added
+
+Subtask 10.4.2: Notify when new fee is issued
+
+Subtask 10.4.3: Notify when a student is absent

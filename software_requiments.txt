@@ -1,0 +1,78 @@
+Yêu Cầu Thiết Kế Module Quản Lý Trường Học
+
+1. Mục tiêu tổng quan
+
+Xây dựng một hệ thống thông tin tập trung để quản lý toàn diện các hoạt động của một trường học, bao gồm thông tin học sinh, phụ huynh, lớp học, giảng dạy, tài chính và kết quả học tập.
+Hệ thống phải đảm bảo tính chính xác, bảo mật và dễ dàng truy cập cho các đối tượng sử dụng khác nhau.
+
+2. Đối tượng sử dụng (User Roles)
+
+Hệ thống cần xác định các vai trò người dùng với các quyền hạn khác nhau:
+* Quản trị viên (Administrator): Có toàn quyền truy cập và cấu hình hệ thống.
+* Giáo viên (Teacher): Quản lý thông tin lớp học mình phụ trách, bao gồm điểm danh, nhập điểm, và xem thông tin học sinh trong lớp.
+* Phụ huynh (Parent): Xem thông tin học tập của con em mình, bao gồm kết quả thi, điểm danh, và thông tin học phí.
+* Kế toán (Accountant): Quản lý các vấn đề liên quan đến học phí.
+
+3. Yêu cầu chức năng (Functional Requirements)
+
+3.1. Quản lý Học sinh (student.student)
+* Hệ thống phải cho phép tạo, xem, sửa, xóa (CRUD) hồ sơ học sinh.
+* Mỗi hồ sơ học sinh phải có các thông tin: Họ tên, Mã học sinh (phải là duy nhất), Ảnh đại diện, Ngày sinh, Giới tính, Ngày nhập học, Tình trạng học tập (đang học, đã tốt nghiệp, bảo lưu).
+* Phải có khả năng liên kết một học sinh với một và chỉ một lớp học tại một thời điểm.
+* Phải có khả năng liên kết một học sinh với một và chỉ một phụ huynh.
+* Cung cấp chức năng tìm kiếm và lọc học sinh theo tên, lớp học, và tình trạng.
+
+3.2. Quản lý Phụ huynh (student.parent)
+* Hệ thống phải cho phép CRUD hồ sơ phụ huynh.
+* Mỗi hồ sơ phụ huynh phải có các thông tin: Họ tên, Số điện thoại, Email, Nghề nghiệp, Địa chỉ liên hệ.
+* Từ giao diện của một phụ huynh, phải có thể xem danh sách tất cả các con của họ đang theo học tại trường.
+
+3.3. Quản lý Lớp học (school.class)
+* Hệ thống phải cho phép CRUD thông tin lớp học.
+* Mỗi lớp học phải có các thông tin: Tên lớp, Năm học.
+* Phải có khả năng gán một và chỉ một giáo viên làm chủ nhiệm cho mỗi lớp.
+* Từ giao diện của một lớp học, phải có thể xem danh sách tất cả học sinh thuộc lớp đó.
+
+3.4. Quản lý Môn học (school.subject)
+* Hệ thống phải cho phép CRUD thông tin môn học.
+* Mỗi môn học có các thông tin cơ bản như Tên môn học, Mã môn học.
+
+3.5. Quản lý Thời khóa biểu (school.timetable)
+* Hệ thống phải cho phép tạo và quản lý thời khóa biểu cho từng lớp học.
+* Thời khóa biểu cần hiển thị thông tin theo ngày trong tuần, tiết học, môn học và giáo viên giảng dạy.
+
+3.6. Quản lý Điểm danh (school.attendance)
+* Giáo viên phải có khả năng điểm danh hàng ngày cho lớp mình phụ trách.
+* Hệ thống phải ghi lại được thông tin: Học sinh, Ngày, Trạng thái (có mặt, vắng, đi trễ).
+* Phụ huynh có thể xem lịch sử điểm danh của con mình.
+* Hệ thống phải có khả năng xuất báo cáo điểm danh theo lớp, theo học sinh trong một khoảng thời gian.
+
+3.7. Quản lý Kết quả thi (school.exam_result)
+* Giáo viên phải có khả năng nhập điểm thi cho học sinh theo từng môn học.
+* Hệ thống phải lưu trữ được thông tin: Học sinh, Môn học, Loại kỳ thi (ví dụ: 15 phút, giữa kỳ, cuối kỳ), Điểm số.
+* Hệ thống phải có khả năng tính điểm trung bình cho học sinh.
+* Phụ huynh có thể xem bảng điểm của con mình.
+
+3.8. Quản lý Học phí (school.fee)
+* Quản trị viên hoặc Kế toán phải có khả năng tạo ra các khoản phí và áp dụng cho học sinh.
+* Hệ thống phải theo dõi được tình trạng thanh toán học phí của từng học sinh (đã đóng, chưa đóng).
+* Phụ huynh có thể xem chi tiết các khoản phí và lịch sử thanh toán của con mình.
+
+4. Yêu cầu về Mối quan hệ Dữ liệu (Data Relationship Requirements)
+* Một Phụ huynh có thể có Nhiều Học sinh. (One2many: student.parent -> student.student)
+* Một Lớp học có thể có Nhiều Học sinh. (One2many: school.class -> student.student)
+* Một Học sinh chỉ thuộc về Một Lớp học. (Many2one: student.student -> school.class)
+* Một Học sinh chỉ có Một Phụ huynh. (Many2one: student.student -> student.parent)
+* Một Lớp học chỉ có Một Giáo viên chủ nhiệm. (Many2one: school.class -> res.users)
+
+5. Yêu cầu Phi chức năng (Non-Functional Requirements)
+* Bảo mật: Phân quyền chặt chẽ. Phụ huynh chỉ được xem thông tin của con mình, không được xem của học sinh khác. Giáo viên chỉ quản lý được lớp mình phụ trách.
+* Giao diện người dùng: Thân thiện, dễ sử dụng, nhất quán và hỗ trợ ngôn ngữ Tiếng Việt.
+* Hiệu năng: Hệ thống phải phản hồi nhanh chóng ngay cả khi có lượng lớn dữ liệu về học sinh và các bản ghi liên quan.
+
+6. Đề xuất Cải tiến (Potential Improvements)
+* Hỗ trợ nhiều phụ huynh: Thay đổi mối quan hệ Many2one từ học sinh đến phụ huynh thành Many2many (parent_ids).
+  Điều này cho phép một học sinh có thể có cả cha và mẹ (hoặc nhiều người giám hộ) trong hệ thống, và cả hai đều có thể xem thông tin.
+* Xây dựng model Giáo viên chuyên biệt: Thay vì chỉ dùng res.users, nên có model school.teacher để lưu các thông tin chuyên biệt như trình độ chuyên môn, các môn có thể dạy, v.v.
+* Cổng thông tin (Portal): Xây dựng giao diện portal riêng cho phụ huynh và học sinh đăng nhập, thay vì cho họ truy cập vào backend của Odoo.
+* Thông báo tự động: Tự động gửi email/thông báo cho phụ huynh khi có kết quả học tập mới, thông báo học phí, hoặc khi con vắng học.

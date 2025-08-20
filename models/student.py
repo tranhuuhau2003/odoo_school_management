@@ -8,6 +8,8 @@ class Student(models.Model):
     _description = 'Student'
 
     name = fields.Char(string='Họ tên', required=True)
+    email = fields.Char(string='Email')
+    phone = fields.Char(string='Số điện thoại')
     gender = fields.Selection([
         ('male', 'Nam'),
         ('female', 'Nữ'),
@@ -22,7 +24,7 @@ class Student(models.Model):
         ('graduated', 'Đã tốt nghiệp'),
         ('reserve', 'Bảo lưu')
     ], string='Tình trạng', default='studying')
-    parent_id = fields.Many2one('student.parent', string='Phụ huynh')  # Đổi tên từ parent_ids → parent_id
+    parent_id = fields.Many2one('student.parent', string='Phụ huynh')  
     class_id = fields.Many2one('school.class', string='Lớp')
     
         # Danh sách kết quả kiểm tra
