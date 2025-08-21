@@ -108,6 +108,23 @@ The **School Management** module is a comprehensive system designed to streamlin
 ---
 
 ## 🛠️ Installation
+2. Activate virtual environment and run Odoo:
+   ```bash
+psql -U odoo -d postgres
+   cd /opt/odoo/odoo
+   ./odoo-bin -c /opt/odoo/odoo/odoo.conf
+   ```
+
+3. Update module and restart Odoo with specific DB:
+   ```bash
+   ./odoo-bin -c /opt/odoo/odoo/odoo.conf -d odoo_db -u school_management
+   ```
+
+4. Check if Odoo is running:
+   ```bash
+   ps aux | grep odoo
+   ```
+
 
 1. Clone this repository:
    ```bash
